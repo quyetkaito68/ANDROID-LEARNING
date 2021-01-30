@@ -18,29 +18,31 @@ class MainActivity : AppCompatActivity() {
             val image: ImageView = findViewById(R.id.imageView)
             val randomNumber = rollDice()
             resultTextView.text = randomNumber.toString()
-            if(randomNumber==1){
-                Toast.makeText(this,"You got Daddy", Toast.LENGTH_SHORT).show()
-               image.setImageResource(R.drawable.diluc)
-            }
-            if(randomNumber==2){
-                Toast.makeText(this,"You got Fischl", Toast.LENGTH_SHORT).show()
-                image.setImageResource(R.drawable.fischl)
-            }
-            if(randomNumber==3){
-                Toast.makeText(this,"You got a Terrorist", Toast.LENGTH_SHORT).show()
-                image.setImageResource(R.drawable.klee)
-            }
-            if(randomNumber==4){
-                Toast.makeText(this,"You got a cute zombie", Toast.LENGTH_SHORT).show()
-                image.setImageResource(R.drawable.qiqi)
-            }
-            if(randomNumber==5){
-                Toast.makeText(this,"You got MONA", Toast.LENGTH_SHORT).show()
-                image.setImageResource(R.drawable.mona)
-            }
-            if(randomNumber==6){
-                Toast.makeText(this,"You got Succrose", Toast.LENGTH_SHORT).show()
-                image.setImageResource(R.drawable.succrose)
+            when(randomNumber){
+                1->{
+                    Toast.makeText(this,"You got Daddy", Toast.LENGTH_SHORT).show()
+                    image.setImageResource(R.drawable.diluc)
+                }
+                2->{
+                    Toast.makeText(this,"You got Fischl", Toast.LENGTH_SHORT).show()
+                    image.setImageResource(R.drawable.fischl)
+                }
+                3->{
+                    Toast.makeText(this,"You got a Terrorist", Toast.LENGTH_SHORT).show()
+                    image.setImageResource(R.drawable.klee)
+                }
+                4->{
+                    Toast.makeText(this,"You got a cute zombie", Toast.LENGTH_SHORT).show()
+                    image.setImageResource(R.drawable.qiqi)
+                }
+                5->{
+                    Toast.makeText(this,"You got MONA", Toast.LENGTH_SHORT).show()
+                    image.setImageResource(R.drawable.mona)
+                }
+                6->{
+                    Toast.makeText(this,"You got Succrose", Toast.LENGTH_SHORT).show()
+                    image.setImageResource(R.drawable.succrose)
+                }
             }
         }
 
