@@ -6,11 +6,10 @@ import android.media.Image
 import android.os.AsyncTask
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.method.ScrollingMovementMethod
 import android.util.Log
 import android.webkit.WebView
-import android.widget.ImageView
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import org.jsoup.Jsoup
 import org.w3c.dom.Document
 import org.w3c.dom.Text
@@ -25,6 +24,10 @@ import java.net.URL
 class MainActivity : AppCompatActivity() {
 
     lateinit var txt: TextView
+    lateinit var edtInput: EditText
+    lateinit var txtResult: TextView
+    lateinit var btnCheck: Button
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -35,16 +38,38 @@ class MainActivity : AppCompatActivity() {
 
        //webview
        val myWebView: WebView = findViewById(R.id.webview)
-      myWebView.webViewClient
+        myWebView.webViewClient
         myWebView.loadUrl("https://dailoan.pro/ket-qua-so-hoa-don-dai-loan-thang-11-12-nam-2020/")
         txt = findViewById(R.id.textView)
+        txt.movementMethod  = ScrollingMovementMethod()
         doit().execute()
+
+        edtInput = findViewById(R.id.editText)
+        txtResult= findViewById(R.id.textView3)
+        btnCheck = findViewById(R.id.buttonCheck)
+
+        btnCheck.setOnClickListener{
+
+            var num: Int = edtInput.text.toString().toInt()
+            val input: String = edtInput.text.toString() //so nhap vao
+            val res: String = txt.text.toString()// chuoi cha
+            if (res.contains(input, ignoreCase = true)==true){
+                Toast.makeText(this,"Bạn đã trúng thưởng", Toast.LENGTH_SHORT).show()
+            }
+            else{
+                Toast.makeText(this,"Chúc bạn may mắn lần sau", Toast.LENGTH_SHORT).show()
+            }
+            txtResult.setText(num.toString())
+        }
+
+
 
 
     }
     @Suppress("DEPRECATION")
     public inner class doit:  AsyncTask<Void, Void, Void>(){
         var words: String = ""
+            get() = field
         override fun doInBackground(vararg p0: Void?): Void? {
             try {
 
@@ -63,6 +88,7 @@ class MainActivity : AppCompatActivity() {
             super.onPostExecute(result)
             txt.setText(words)
         }
+
 
     }
 
